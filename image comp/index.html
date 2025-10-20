@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free Image Compressor Online - Reduce JPG, PNG, WebP Size | ImageTools</title>
+    <meta name="description" content="Free online image compressor tool. Reduce JPG, PNG, WebP file sizes by 50-80% without quality loss. Compress images for web, email, social media. No registration required.">
+    <meta name="keywords" content="image compressor, compress images, reduce image size, jpg compressor, png compressor, webp converter, free image optimizer, photo size reducer">
+    <meta name="author" content="ImageTools">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Free Image Compressor Online - Reduce Image Size">
+    <meta property="og:description" content="Compress JPG, PNG, WebP images online. Reduce file size by up to 80% without quality loss.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://yourwebsite.com/og-image.jpg">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://yourwebsite.com/image-compressor">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- Google Ads -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8937289257611386" crossorigin="anonymous"></script>
+               
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Free Image Compressor",
+      "description": "Online tool to compress and reduce image file sizes without quality loss",
+      "url": "https://yourwebsite.com/image-compressor",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "ImageTools"
+      },
+      "featureList": "Image compression, Format conversion, Quality adjustment, Batch processing"
+    }
+    </script>
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Free Image Compressor</h1>
+            <p class="subtitle">Reduce image file size by up to 80% without quality loss</p>
+        </header>
+        
+        <!-- Breadcrumb for SEO -->
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+            <a href="/">Home</a> &gt; <a href="/tools">Online Tools</a> &gt; Image Compressor
+        </nav>
+        
+        <!-- Top Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- Google AdSense Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8937289257611386"
+                 data-ad-slot="1234567890"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <div class="main-content">
+            <section class="upload-section">
+                <h2 class="section-title">Upload & Compress Image</h2>
+                
+                <div class="upload-area" id="uploadArea">
+                    <div class="upload-icon">📁</div>
+                    <p>Drag & drop your image here or click to browse</p>
+                    <p class="file-info">Supports JPG, PNG, and WebP (Max: 10MB)</p>
+                    <input type="file" id="fileInput" class="file-input" accept="image/*">
+                </div>
+                
+                <div class="loading" id="loadingIndicator">
+                    <div class="loading-spinner"></div>
+                    <p>Compressing image...</p>
+                </div>
+                
+                <div class="controls">
+                    <div class="control-group">
+                        <label for="qualitySlider">Compression Quality</label>
+                        <div class="slider-container">
+                            <input type="range" id="qualitySlider" class="slider" min="10" max="100" value="80">
+                            <span id="qualityValue" class="slider-value">80%</span>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label for="formatSelect">Output Format</label>
+                        <select id="formatSelect" class="format-select">
+                            <option value="original">Same as original</option>
+                            <option value="jpeg">JPEG</option>
+                            <option value="png">PNG</option>
+                            <option value="webp">WebP</option>
+                        </select>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="preview-section">
+                <h2 class="section-title">Preview & Download</h2>
+                
+                <div class="preview-container">
+                    <div class="preview-box">
+                        <div class="preview-title">Original Image</div>
+                        <div id="originalPreview" class="preview-placeholder">
+                            <img src="" alt="Original preview" class="preview-img" id="originalImg" style="display: none;">
+                            <p id="originalPlaceholder">No image selected</p>
+                        </div>
+                        <div class="file-info" id="originalInfo"></div>
+                    </div>
+                    
+                    <div class="preview-box">
+                        <div class="preview-title">Compressed Image</div>
+                        <div id="compressedPreview" class="preview-placeholder">
+                            <img src="" alt="Compressed preview" class="preview-img" id="compressedImg" style="display: none;">
+                            <p id="compressedPlaceholder">Compressed image will appear here</p>
+                        </div>
+                        <div class="file-info" id="compressedInfo"></div>
+                    </div>
+                </div>
+                
+                <div class="compression-info">
+                    <div class="info-row">
+                        <span>Original Size:</span>
+                        <span id="originalSize">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span>Compressed Size:</span>
+                        <span id="compressedSize">-</span>
+                    </div>
+                    <div class="info-row">
+                        <span>Size Reduction:</span>
+                        <span id="sizeReduction" class="savings">-</span>
+                    </div>
+                </div>
+                         
+                <button id="downloadBtn" class="download-btn" disabled>Download Compressed Image</button>
+            </section>
+        </div>
+        
+        <!-- Middle Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- Google AdSense Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8937289257611386"
+                 data-ad-slot="0987654321"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <!-- Features Section for SEO -->
+        <section class="features">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Fast Compression</h3>
+                <p>Compress images in seconds with our optimized algorithm</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>Privacy Protected</h3>
+                <p>Your images are processed in browser, never uploaded to servers</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💯</div>
+                <h3>High Quality</h3>
+                <p>Maintain visual quality while reducing file size significantly</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Friendly</h3>
+                <p>Works perfectly on all devices - desktop, tablet, and mobile</p>
+            </div>
+        </section>
+        
+        <!-- FAQ Section for SEO -->
+        <section class="faq-section">
+            <h2 style="margin-bottom: 20px;">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">How does this image compressor work?</div>
+                <p>Our tool uses advanced compression algorithms to reduce image file size while maintaining visual quality. All processing happens directly in your browser for maximum privacy.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What image formats are supported?</div>
+                <p>We support JPG, PNG, and WebP formats. You can compress images and optionally convert them to different formats.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Is there a file size limit?</div>
+                <p>Yes, the maximum file size is 10MB to ensure fast processing and optimal performance.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Are my images stored anywhere?</div>
+                <p>No, all image processing happens locally in your browser. Your images are never uploaded to any server, ensuring complete privacy.</p>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">How much can I reduce image file size?</div>
+                <p>Depending on the image and settings, you can typically reduce file size by 50-80% without noticeable quality loss.</p>
+            </div>
+        </section>
+        
+        <!-- Bottom Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <!-- Google AdSense Ad Unit -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-8937289257611386"
+                 data-ad-slot="1122334455"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+        </div>
+        
+        <footer>
+            <p>Image Compressor &copy; 2023 | All processing happens in your browser - your images are never uploaded to any server</p>
+            <div class="footer-links">
+                <a href="/privacy">Privacy Policy</a>
+                <a href="/terms">Terms of Service</a>
+                <a href="/contact">Contact Us</a>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // DOM Elements
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('fileInput');
+        const qualitySlider = document.getElementById('qualitySlider');
+        const qualityValue = document.getElementById('qualityValue');
+        const formatSelect = document.getElementById('formatSelect');
+        const originalImg = document.getElementById('originalImg');
+        const compressedImg = document.getElementById('compressedImg');
+        const originalPlaceholder = document.getElementById('originalPlaceholder');
+        const compressedPlaceholder = document.getElementById('compressedPlaceholder');
+        const originalInfo = document.getElementById('originalInfo');
+        const compressedInfo = document.getElementById('compressedInfo');
+        const originalSize = document.getElementById('originalSize');
+        const compressedSize = document.getElementById('compressedSize');
+        const sizeReduction = document.getElementById('sizeReduction');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        
+        // Variables
+        let originalFile = null;
+        let compressedBlob = null;
+        let compressedUrl = null;
+        
+        // Event Listeners
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.style.backgroundColor = '#f0f0f0';
+        });
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.style.backgroundColor = '';
+        });
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.style.backgroundColor = '';
+            if (e.dataTransfer.files.length) {
+                handleFile(e.dataTransfer.files[0]);
+            }
+        });
+        
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length) {
+                handleFile(e.target.files[0]);
+            }
+        });
+        
+        qualitySlider.addEventListener('input', () => {
+            qualityValue.textContent = `${qualitySlider.value}%`;
+            if (originalFile) {
+                compressImage();
+            }
+        });
+        
+        formatSelect.addEventListener('change', () => {
+            if (originalFile) {
+                compressImage();
+            }
+        });
+        
+        downloadBtn.addEventListener('click', downloadCompressedImage);
+        
+        // Functions
+        function handleFile(file) {
+            // Check if file is an image
+            if (!file.type.match('image.*')) {
+                alert('Please select an image file (JPG, PNG, WebP, etc.)');
+                return;
+            }
+            
+            // Check file size (limit to 10MB)
+            if (file.size > 10 * 1024 * 1024) {
+                alert('Please select an image smaller than 10MB');
+                return;
+            }
+            
+            originalFile = file;
+            
+            // Display original image
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                originalImg.src = e.target.result;
+                originalImg.style.display = 'block';
+                originalPlaceholder.style.display = 'none';
+                
+                // Display file info
+                const fileSize = formatFileSize(file.size);
+                originalInfo.textContent = `${fileSize}`;
+                originalSize.textContent = fileSize;
+                
+                // Compress the image
+                compressImage();
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function compressImage() {
+            if (!originalFile) return;
+            
+            loadingIndicator.style.display = 'block';
+            
+            const quality = parseInt(qualitySlider.value) / 100;
+            const format = formatSelect.value === 'original' 
+                ? getFileExtension(originalFile.name) 
+                : formatSelect.value;
+            
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            const img = new Image();
+            
+            img.onload = () => {
+                // Set canvas dimensions to image dimensions
+                canvas.width = img.width;
+                canvas.height = img.height;
+                
+                // Draw image on canvas
+                ctx.drawImage(img, 0, 0);
+                
+                // Convert to blob with specified quality and format
+                canvas.toBlob((blob) => {
+                    compressedBlob = blob;
+                    
+                    // Clean up previous URL if exists
+                    if (compressedUrl) {
+                        URL.revokeObjectURL(compressedUrl);
+                    }
+                    
+                    // Create new URL for compressed image
+                    compressedUrl = URL.createObjectURL(blob);
+                    
+                    // Display compressed image
+                    compressedImg.src = compressedUrl;
+                    compressedImg.style.display = 'block';
+                    compressedPlaceholder.style.display = 'none';
+                    
+                    // Display file info
+                    const compressedFileSize = formatFileSize(blob.size);
+                    compressedInfo.textContent = `${compressedFileSize}`;
+                    compressedSize.textContent = compressedFileSize;
+                    
+                    // Calculate and display size reduction
+                    const reduction = ((originalFile.size - blob.size) / originalFile.size * 100).toFixed(1);
+                    sizeReduction.textContent = `${reduction}%`;
+                    
+                    // Enable download button
+                    downloadBtn.disabled = false;
+                    
+                    // Hide loading indicator
+                    loadingIndicator.style.display = 'none';
+                }, `image/${format === 'jpeg' ? 'jpeg' : format}`, quality);
+            };
+            
+            img.onerror = () => {
+                loadingIndicator.style.display = 'none';
+                alert('Error loading image. Please try another image.');
+            };
+            
+            img.src = URL.createObjectURL(originalFile);
+        }
+        
+        function downloadCompressedImage() {
+            if (!compressedBlob) return;
+            
+            const format = formatSelect.value === 'original' 
+                ? getFileExtension(originalFile.name) 
+                : formatSelect.value;
+            
+            const fileName = originalFile.name.replace(/\.[^/.]+$/, "") + `_compressed.${format}`;
+            
+            // Create download link
+            const link = document.createElement('a');
+            link.href = compressedUrl;
+            link.download = fileName;
+            
+            // Append to body, click, and remove
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            
+            // Track download event (for analytics)
+            console.log('Download triggered:', fileName);
+        }
+        
+        function getFileExtension(filename) {
+            return filename.slice((filename.lastIndexOf(".") - 1 >>> 0) + 2);
+        }
+        
+        function formatFileSize(bytes) {
+            if (bytes < 1024) return bytes + ' bytes';
+            else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+            else return (bytes / 1048576).toFixed(1) + ' MB';
+        }
+        
+        // Initialize ads
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</body>
+</html>
